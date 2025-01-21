@@ -1,3 +1,48 @@
+interface SubscriptionData {
+  loopAddress: string;
+  maxTime: number;
+  minTime: number;
+  optional: boolean;
+  read: boolean;
+  unique: number;
+  y: boolean;
+}
+
+declare const marker: unique symbol;
+type NodeId = string & { [marker]: "NodeId" };
+
+type DataModelNodes = Map<NodeId, DataModelNode>;
+
+type DataModelNode = ConstNode | RefNode | SubscriptionNode | FunctionNode;
+
+interface ConstNode {
+  kind: "const";
+  in: null;
+  out: null | Set<NodeId>;
+  data: null;
+}
+
+interface RefNode {
+  kind: "const";
+  in: [NodeId];
+  out: null | Set<NodeId>;
+  data: null;
+}
+
+interface SubscriptionNode {
+  kind: "subscription";
+  in: [NodeId] | [NodeId, NodeId];
+  out: null | Set<NodeId>;
+  data: SubscriptionData;
+}
+
+interface FunctionNode {
+  kind: "function";
+  in: null | NodeId[];
+  out: null | Set<NodeId>;
+  data: string;
+}
+
 interface DataObjectBool {
   /**
    * If `true`, the data should be used.
