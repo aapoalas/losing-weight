@@ -37,12 +37,6 @@ interface LoopData {
   metadata: null | LoopMetadataObject;
 }
 
-const enum Source {
-  A,
-  B,
-  C,
-}
-
 interface LoopComponent {
   configuration: ComponentConfiguration;
   displayNames: DisplayName[];
@@ -58,6 +52,12 @@ interface ComponentConfiguration {
   loopName: WrappedProperty<LoopName>;
   loopAdapter: WrappedProperty<string>;
   [componentConfigurationProperty: string]: WrappedProperty<unknown>;
+}
+
+const enum Source {
+  A,
+  B,
+  C,
 }
 
 interface LoopMetadataObject {
