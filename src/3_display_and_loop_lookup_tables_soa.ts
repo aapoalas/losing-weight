@@ -1,7 +1,8 @@
 /*
  * Copyright Valmet Automation Inc.
  *
- * A pair of lookup tables, smushed down to 9 MBs!
+ * A pair of lookup tables, smushed down to 9 MBs using Strct-of-Arrays! The
+ * same generated test set took only 15 Mbs!
  */
 
 import type {
