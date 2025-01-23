@@ -5,44 +5,44 @@
  * automation system to the user interface. Found to often take ~10 MB a pop.
  */
 
-import type { NodeId } from "./types.ts";
+import type { NodeName } from "./types.ts";
 
-type DataModelNodes = Map<NodeId, DataModelNode>;
+type DataModelNodes = Map<NodeName, DataModelNode>;
 
 type DataModelNode = ConstNode | RefNode | SubscriptionNode | FunctionNode;
 
 interface GenericDataModelNode {
   kind: string;
-  in: NodeId[];
-  out: Set<NodeId>;
+  in: NodeName[];
+  out: Set<NodeName>;
   data: unknown;
 }
 
 interface ConstNode {
   kind: "const";
   in: [];
-  out: Set<NodeId>;
+  out: Set<NodeName>;
   data: null;
 }
 
 interface RefNode {
   kind: "const";
-  in: [NodeId];
-  out: Set<NodeId>;
+  in: [NodeName];
+  out: Set<NodeName>;
   data: null;
 }
 
 interface SubscriptionNode {
   kind: "subscription";
-  in: [NodeId] | [NodeId, NodeId];
-  out: Set<NodeId>;
+  in: [NodeName] | [NodeName, NodeName];
+  out: Set<NodeName>;
   data: SubscriptionData;
 }
 
 interface FunctionNode {
   kind: "function";
-  in: NodeId[];
-  out: Set<NodeId>;
+  in: NodeName[];
+  out: Set<NodeName>;
   data: string;
 }
 

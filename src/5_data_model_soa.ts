@@ -7,13 +7,16 @@
  * used in the flow of data.
  */
 
-import type { BRAND, NodeId } from "./types.ts";
+import type { BRAND, NodeName } from "./types.ts";
 
-type DataModelNodes = Map<NodeId, NodeIdentifier>;
+type DataModelNodes = Map<NodeName, NodeIdentifier>;
 
 interface DataModelNodeTable {
-  kind: Uint8Array & NodeType[];
+  // Record<NodeIdentifier, NodeType>
+  kind: Uint8Array;
+  // Record<NodeIdentifier, null | NodeIdentifier | Set<NodeIdentifier>>
   out: (null | NodeIdentifier | Set<NodeIdentifier>)[];
+  // Record<NodeIdentifier, NodeDataByNodeType<NodeType>>
   data: Uint32Array;
 }
 
@@ -32,9 +35,12 @@ const enum NodeType {
 }
 
 interface SubscriptionDataTable {
-  firstInNode: Uint32Array & NodeIdentifier[];
+  // Record<SubscriptionIdentifier, NodeIdentifier>
+  firstInNode: Uint32Array;
   secondInNode: Map<SubscriptionIdentifier, NodeIdentifier>;
+  // Record<SubscriptionIdentifier, null | string>
   subscriptionAddressWithParams: (null | string)[];
+  // Record<SubscriptionIdentifier, undefined | string>
   type: (undefined | string)[];
   optional: Set<SubscriptionIdentifier>;
   includeType: Set<SubscriptionIdentifier>;
@@ -44,17 +50,22 @@ interface SubscriptionDataTable {
 }
 
 interface ReadDataTable {
-  firstInNode: Uint32Array & NodeIdentifier[];
+  // Record<ReadIdentifier, NodeIdentifier>
+  firstInNode: Uint32Array;
   secondInNode: Map<SubscriptionIdentifier, NodeIdentifier>;
+  // Record<ReadIdentifier, null | string>
   subscriptionAddressWithParams: (null | string)[];
+  // Record<ReadIdentifier, undefined | string>
   type: (undefined | string)[];
   optional: Set<SubscriptionIdentifier>;
   includeType: Set<SubscriptionIdentifier>;
 }
 
 interface FunctionDataTable {
+  // Record<FunctionIdentifier, NodeIdentifier[]>
   in: NodeIdentifier[][];
-  function: string;
+  // Record<FunctionIdentifier, string>
+  function: string[];
 }
 
 type NodeDataByType<Type extends NodeType> = Type extends NodeType.Const

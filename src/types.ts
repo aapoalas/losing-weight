@@ -16,6 +16,6 @@ export type DisplayName = string & { [BRAND]: "display.name" };
 
 export type LoopName = string & { [BRAND]: "loop.name" };
 
-export type NodeId = string & { [BRAND]: "NodeId" };
+export type NodeName = string & { [BRAND]: "NodeName" };
 
 export declare const BRAND: unique symbol;
