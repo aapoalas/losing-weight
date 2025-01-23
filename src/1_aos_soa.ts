@@ -2,7 +2,7 @@
  * Introduction to Array-of-Structs => Struct-of-Arrays transformation.
  */
 
-import type { FlexibleIndexArray, BRAND } from "./types.ts";
+import type { BRAND, FlexibleIndexArray } from "./types.ts";
 
 interface Component {
   type: string;

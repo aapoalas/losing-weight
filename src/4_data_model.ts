@@ -11,6 +11,7 @@ type DataModelNodes = Map<NodeName, DataModelNode>;
 
 type DataModelNode = ConstNode | RefNode | SubscriptionNode | FunctionNode;
 
+// 60 bytes per object
 interface GenericDataModelNode {
   kind: string;
   in: NodeName[];
@@ -21,7 +22,7 @@ interface GenericDataModelNode {
 interface ConstNode {
   kind: "const";
   in: [];
-  out: Set<NodeName>;
+  out: Set<NodeName>; // Note: Set is never empty.
   data: null;
 }
 
@@ -46,6 +47,7 @@ interface FunctionNode {
   data: string;
 }
 
+// 40 bytes per object
 interface SubscriptionData {
   subscriptionAddressWithParams: null | string;
   type: undefined | string;

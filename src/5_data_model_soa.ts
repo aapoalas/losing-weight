@@ -11,6 +11,8 @@ import type { BRAND, NodeName } from "./types.ts";
 
 type DataModelNodes = Map<NodeName, NodeIdentifier>;
 
+// 212 bytes base size
+// 9 bytes per "object"
 interface DataModelNodeTable {
   // Record<NodeIdentifier, NodeType>
   kind: Uint8Array;
@@ -20,6 +22,7 @@ interface DataModelNodeTable {
   data: Uint32Array;
 }
 
+// 24 bytes base size
 interface DataModelNodeDataTable {
   subscriptions: SubscriptionDataTable;
   reads: null | ReadDataTable;
@@ -34,6 +37,11 @@ const enum NodeType {
   Function,
 }
 
+// 288 bytes base size
+// ~12 bytes per "object" normally:
+//   - Map membership adds ~8 bytes
+//   - Set membership adds ~4 bytes
+// => 21+ bytes total per SubscriptionNode
 interface SubscriptionDataTable {
   // Record<SubscriptionIdentifier, NodeIdentifier>
   firstInNode: Uint32Array;
@@ -49,6 +57,11 @@ interface SubscriptionDataTable {
   unique: Map<SubscriptionIdentifier, number>;
 }
 
+// 244 bytes base size
+// 12 bytes per "object" normally:
+//   - Map membership adds ~8 bytes
+//   - Set membership adds ~4 bytes
+// => 21+ bytes total per ReadNode
 interface ReadDataTable {
   // Record<ReadIdentifier, NodeIdentifier>
   firstInNode: Uint32Array;
@@ -61,6 +74,9 @@ interface ReadDataTable {
   includeType: Set<SubscriptionIdentifier>;
 }
 
+// 52 bytes base size
+// 24 bytes per "object"
+// => 33 bytes total per FunctionNode
 interface FunctionDataTable {
   // Record<FunctionIdentifier, NodeIdentifier[]>
   in: NodeIdentifier[][];
@@ -68,17 +84,12 @@ interface FunctionDataTable {
   function: string[];
 }
 
-type NodeDataByType<Type extends NodeType> = Type extends NodeType.Const
-  ? null
-  : Type extends NodeType.Ref
-    ? NodeIdentifier
-    : Type extends NodeType.Subscription
-      ? SubscriptionIdentifier
-      : Type extends NodeType.Read
-        ? ReadIdentifier
-        : Type extends NodeType.Function
-          ? FunctionIdentifier
-          : never;
+type NodeDataByType<Type extends NodeType> = Type extends NodeType.Const ? null
+  : Type extends NodeType.Ref ? NodeIdentifier
+  : Type extends NodeType.Subscription ? SubscriptionIdentifier
+  : Type extends NodeType.Read ? ReadIdentifier
+  : Type extends NodeType.Function ? FunctionIdentifier
+  : never;
 
 // === LOCAL-ONLY IDENTIFIER DEFINITIONS ===
 

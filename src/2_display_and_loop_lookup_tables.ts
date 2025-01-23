@@ -14,14 +14,16 @@ import type {
 
 type DisplayLookupTable = Map<DisplayName, DisplayData>;
 
+// 48 bytes per object
 interface DisplayData {
   name: DisplayName;
   title: DisplayTitle;
-  components?: DisplayComponent[];
+  components: DisplayComponent[];
   width: number | "auto";
   height: number | "auto";
 }
 
+// 20 or 24 bytes per object
 interface DisplayComponent {
   name: string;
   loopName: LoopName;
@@ -30,6 +32,7 @@ interface DisplayComponent {
 
 type LoopLookupTable = Map<LoopName, LoopData>;
 
+// 104 bytes per object
 interface LoopData {
   name: LoopName;
   componentTypes: string[];
@@ -40,6 +43,7 @@ interface LoopData {
   metadata: null | LoopMetadataObject;
 }
 
+// 44 bytes per object
 interface LoopComponent {
   faceplate: null | string;
   type: string;
@@ -47,6 +51,7 @@ interface LoopComponent {
   configuration: ComponentConfiguration;
 }
 
+// 66+ bytes per object
 interface ComponentConfiguration {
   // @ts-expect-error Not possible to express this in TypeScript.
   kind: "component";
@@ -63,6 +68,7 @@ const enum Source {
   C,
 }
 
+// 28 bytes per object
 interface LoopMetadataObject {
   loopName: LoopName;
   loopType: string;

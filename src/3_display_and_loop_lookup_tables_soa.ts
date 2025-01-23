@@ -16,6 +16,8 @@ import type {
 type DisplayLookupTable = Map<DisplayName, DisplayIdentifier>;
 
 // Record<DisplayName, DisplayData>
+// 272 bytes base size
+// ~11-14 bytes per "object"
 export interface DisplayDataTable {
   // Record<DisplayIdentifier, DisplayName>
   name: DisplayName[];
@@ -30,6 +32,8 @@ export interface DisplayDataTable {
 }
 
 // Record<DisplayComponentIdentifier, DisplayComponent>
+// 212 bytes base size
+// ~4 bytes per "object"
 export interface DisplayComponentTable {
   // Record<DisplayComponentIdentifier, DisplayComponentNameIdentifier>
   componentName: FlexibleIndexArray;
@@ -41,6 +45,8 @@ export interface DisplayComponentTable {
 type LoopLookupTable = Map<LoopName, LoopIdentifier>;
 
 // Record<LoopName, LoopData>
+// 336 bytes base size
+// ~16 bytes per "object"
 export interface LoopDataTable {
   // Record<LoopIdentifier, LoopName>
   name: LoopName[];
@@ -55,6 +61,8 @@ export interface LoopDataTable {
 }
 
 // Record<LoopComponentIdentifier, LoopComponent>
+// 384 bytes base size
+// ~9 bytes per "object"
 export interface LoopComponentTable {
   // Record<LoopComponentIdentifier, null | FaceplateNamePartIdentifier>
   faceplateNamePart: FlexibleIndexArray;
@@ -71,6 +79,7 @@ export interface LoopComponentTable {
 // Record<LoopDisplayNamesIdentifier, DisplayIdentifier>
 type LoopDisplayNames = FlexibleIndexArray;
 
+// 132 bytes base size
 interface DataStorage {
   // Record<LoopComponentTypeIdentifier, string>
   componentTypeStringArray: string[];
