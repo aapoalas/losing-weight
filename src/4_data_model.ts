@@ -1,5 +1,8 @@
-/**
+/*
  * Copyright Valmet Automation Inc.
+ *
+ * A fundamental directed acyclic graph underpinning the flow of data from the
+ * automation system to the user interface. Found to often take ~10 MB a pop.
  */
 
 import type { NodeId } from "./types.ts";

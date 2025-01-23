@@ -1,5 +1,7 @@
-/**
+/*
  * Copyright Valmet Automation Inc.
+ *
+ * A pair of lookup tables, smushed down to 9 MBs!
  */
 
 import type {

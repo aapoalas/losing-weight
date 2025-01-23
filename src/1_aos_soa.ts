@@ -1,3 +1,7 @@
+/*
+ * Introduction to Array-of-Structs => Struct-of-Arrays transformation.
+ */
+
 import type { FlexibleIndexArray, BRAND } from "./types.ts";
 
 interface Component {

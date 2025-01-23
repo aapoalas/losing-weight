@@ -1,4 +1,4 @@
-/**
+/*
  * Copyright Valmet Automation Inc.
  */
 

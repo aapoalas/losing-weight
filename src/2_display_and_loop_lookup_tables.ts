@@ -1,5 +1,7 @@
-/**
+/*
  * Copyright Valmet Automation Inc.
+ *
+ * A pair of lookup tables that were taking up 80+ MBs.
  */
 
 import type {
@@ -38,10 +40,10 @@ interface LoopData {
 }
 
 interface LoopComponent {
-  configuration: ComponentConfiguration;
-  displayNames: DisplayName[];
-  type: string;
   faceplate: null | string;
+  type: string;
+  displayNames: DisplayName[];
+  configuration: ComponentConfiguration;
 }
 
 interface ComponentConfiguration {

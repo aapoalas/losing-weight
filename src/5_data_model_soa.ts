@@ -1,5 +1,10 @@
-/**
+/*
  * Copyright Valmet Automation Inc.
+ *
+ * The fundamental directed acyclic graph reimagined in a Struct-of-Arrays
+ * form, expected to radically reduce memory usage. Additionally enables
+ * encoding the correct post-order traversal into the data structure that is
+ * used in the flow of data.
  */
 
 import type { BRAND, NodeId } from "./types.ts";
@@ -20,6 +25,7 @@ interface DataModelNodeDataTable {
 
 const enum NodeType {
   Const,
+  Ref,
   Subscription,
   Read,
   Function,
