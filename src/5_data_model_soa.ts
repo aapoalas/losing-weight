@@ -57,6 +57,24 @@ interface FunctionDataTable {
   function: string;
 }
 
-type SubscriptionIdentifier = number & { [BRAND]: "subscription" };
-type ReadIdentifier = number & { [BRAND]: "read" };
+type NodeDataByType<Type extends NodeType> = Type extends NodeType.Const
+  ? null
+  : Type extends NodeType.Ref
+    ? NodeIdentifier
+    : Type extends NodeType.Subscription
+      ? SubscriptionIdentifier
+      : Type extends NodeType.Read
+        ? ReadIdentifier
+        : Type extends NodeType.Function
+          ? FunctionIdentifier
+          : never;
+
+// === LOCAL-ONLY IDENTIFIER DEFINITIONS ===
+
 type NodeIdentifier = number & { [BRAND]: "NodeIdentifier" };
+
+type SubscriptionIdentifier = number & { [BRAND]: "subscription" };
+
+type FunctionIdentifier = number & { [BRAND]: "function" };
+
+type ReadIdentifier = number & { [BRAND]: "read" };

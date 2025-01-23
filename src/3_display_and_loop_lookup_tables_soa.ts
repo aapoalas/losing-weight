@@ -85,16 +85,14 @@ interface DataStorage {
   restOfConfigurationStringifiedArray: string[];
 }
 
-// === TYPES ===
+// === LOCAL-ONLY IDENTIFIER DEFINITIONS ===
 
 export type DisplayIdentifier = number & {
   [BRAND]: "display";
 };
-
 export type DisplayComponentIdentifier = number & {
   [BRAND]: "display.components[]";
 };
-
 export type DisplayComponentNameIdentifier = number & {
   [BRAND]: "display.components[].name";
 };
@@ -102,7 +100,6 @@ export type DisplayComponentNameIdentifier = number & {
 export type LoopIdentifier = number & {
   [BRAND]: "loop";
 };
-
 export type LoopComponentIdentifier = number & {
   [BRAND]: "loop.components[0]";
 }; // also "loop.faceplates[0]"
