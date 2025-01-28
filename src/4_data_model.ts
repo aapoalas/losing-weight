@@ -2,7 +2,7 @@
  * Copyright Valmet Automation Inc.
  *
  * A fundamental directed acyclic graph underpinning the flow of data from the
- * automation system to the user interface. Found to often take ~10 MB a pop.
+ * automation system to the user interface. Found to often take ~10 MiB a pop.
  */
 
 import type { NodeName } from "./types.ts";

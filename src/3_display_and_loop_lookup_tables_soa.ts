@@ -1,8 +1,10 @@
 /*
  * Copyright Valmet Automation Inc.
  *
- * A pair of lookup tables, smushed down to 9 MBs using Strct-of-Arrays! The
- * same generated test set took only 15 Mbs!
+ * A pair of lookup tables, smushed down to 9 MiBs using Strct-of-Arrays! The
+ * earlier generated test set took only 15 Mibs!
+ *
+ * See {@link ./2_display_and_loop_lookup_tables.ts} for the original.
  */
 
 import type {

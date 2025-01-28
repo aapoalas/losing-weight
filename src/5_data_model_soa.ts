@@ -2,9 +2,12 @@
  * Copyright Valmet Automation Inc.
  *
  * The fundamental directed acyclic graph reimagined in a Struct-of-Arrays
- * form, expected to radically reduce memory usage. Additionally enables
- * encoding the correct post-order traversal into the data structure that is
- * used in the flow of data.
+ * form, found to take approximately ~2 MiB a pop. Additionally enables
+ * encoding the post-order traversal used to update data in the graph directly
+ * into the data structure itself. (Downstream nodes can be forced to always
+ * have higher indexes.)
+ *
+ * See {@link ./4_data_model.ts} for the original.
  */
 
 import type { BRAND, NodeName } from "./types.ts";
@@ -84,12 +87,17 @@ interface FunctionDataTable {
   function: string[];
 }
 
-type NodeDataByType<Type extends NodeType> = Type extends NodeType.Const ? null
-  : Type extends NodeType.Ref ? NodeIdentifier
-  : Type extends NodeType.Subscription ? SubscriptionIdentifier
-  : Type extends NodeType.Read ? ReadIdentifier
-  : Type extends NodeType.Function ? FunctionIdentifier
-  : never;
+type NodeDataByType<Type extends NodeType> = Type extends NodeType.Const
+  ? null
+  : Type extends NodeType.Ref
+    ? NodeIdentifier
+    : Type extends NodeType.Subscription
+      ? SubscriptionIdentifier
+      : Type extends NodeType.Read
+        ? ReadIdentifier
+        : Type extends NodeType.Function
+          ? FunctionIdentifier
+          : never;
 
 // === LOCAL-ONLY IDENTIFIER DEFINITIONS ===
 

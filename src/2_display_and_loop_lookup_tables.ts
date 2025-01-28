@@ -1,8 +1,8 @@
 /*
  * Copyright Valmet Automation Inc.
  *
- * A pair of lookup tables that were taking up 80+ MBs. A generated test set
- * consumed 350+ MBs.
+ * A pair of lookup tables that were taking up 80+ MiBs. A generated test set
+ * consumed 350+ MiBs.
  */
 
 import type {
