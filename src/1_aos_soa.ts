@@ -15,22 +15,18 @@ interface Component {
   parent: null | Component;
   children: Component[];
   /**
-   * Unique name of the component within its container.
-   */
-  name: string;
-  /**
-   * Two-part identifier for this DataObject, first part is a hierarchical path
+   * Two-part identifier for this Component, first part is a hierarchical path
    * to the container and the second part is a unique name within the container.
    */
   scopedName: `${string}/${string}`;
 }
 
 interface Components {
-  enabled: ComponentDataStorage;
-  disabled: ComponentDataStorage;
+  enabled: ComponentTable;
+  disabled: ComponentTable;
 }
 
-interface ComponentDataStorage {
+interface ComponentTable {
   /**
    * Refers to {@linkcode ComponentDataParts} types array.
    */
@@ -42,7 +38,7 @@ interface ComponentDataStorage {
    */
   selected: Set<ComponentIndex>;
   /**
-   * Refers back to {@linkcode ComponentDataStorage}. Maximum number is used as
+   * Refers back to {@linkcode ComponentTable}. Maximum number is used as
    * a sentinel for `null`.
    */
   parent: FlexibleIndexArray;
@@ -53,7 +49,7 @@ interface ComponentDataStorage {
    */
   width: Uint16Array;
   /**
-   * If value is maximum value, then {@linkcode fullWidth} Map contains the
+   * If value is maximum value, then {@linkcode fullHeight} Map contains the
    * real value.
    */
   height: Uint16Array;
@@ -78,6 +74,6 @@ interface ComponentDataParts {
 }
 
 /**
- * References an index in {@linkcode ComponentDataStorage}.
+ * References an index in {@linkcode ComponentTable}.
  */
 type ComponentIndex = number & { [BRAND]: unknown };
