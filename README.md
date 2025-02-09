@@ -13,3 +13,6 @@ Losing weight is a tradeoff that costs you code weight, complexity, and context
 knowledge requirements. For those cases where you absolutely must get the memory
 consumption of a data structure under control, that tradeoff may still make
 sense.
+
+- [Video link](https://fosdem.org/2025/schedule/event/fosdem-2025-4391-how-to-lose-weight-optimising-memory-usage-in-javascript-and-beyond/)
+- [Presentation slides](https://docs.google.com/presentation/d/10UltQVVPwZ7FfDbNuYc3lW99bMzZZS6HBa2bmM-xrjk/edit?usp=sharing)
